@@ -135,6 +135,7 @@
 								<div class="col-4">
 									<label for="cantidad">Total a Pagar</label>
 									<div>
+									<input type="hidden" th:field="*{id}" /> 
 										<input type="text" th:field="*{strTotalPagar}"
 											class="form-control form-control"
 											th:errorclass="'form-control alert-danger'"

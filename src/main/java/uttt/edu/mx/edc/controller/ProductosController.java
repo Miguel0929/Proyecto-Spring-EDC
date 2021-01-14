@@ -1,5 +1,7 @@
 package uttt.edu.mx.edc.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import uttt.edu.mx.edc.model.BitacoraEntradaSalida;
 import uttt.edu.mx.edc.model.Producto;
+import uttt.edu.mx.edc.repository.BitacoraEntradaSalidasRepository;
 import uttt.edu.mx.edc.repository.ProductoRepository;
 import uttt.edu.mx.edc.repository.ProveedorRepository;
 
@@ -22,6 +26,9 @@ public class ProductosController {
 	
 	@Autowired
 	private ProveedorRepository proveedorRepository;
+	
+	@Autowired
+	private BitacoraEntradaSalidasRepository bitacoraRepository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String listarProductos(Model model) {
@@ -48,6 +55,16 @@ public class ProductosController {
 			model.addAttribute("proveedores", proveedorRepository.findAll());
 			return "registrarProducto";
 		}
+		//Obtenemos Fecha y Hora
+		Date date = new Date();
+		//Guardamos en Bitacora
+		BitacoraEntradaSalida bitacora=new BitacoraEntradaSalida();
+		bitacora.setStrFechaHora(date);
+		bitacora.setStrCantidad(registerProducto.getStrStock());
+		bitacora.setStrDescripcion(registerProducto.getStrDescripcion());
+		bitacora.setStrStatus("Entrada");
+		bitacoraRepository.save(bitacora);
+		//Registramos Producto en Almacen
 		productoRepository.save(registerProducto);
 		return "redirect:almacenProductos";
 	}

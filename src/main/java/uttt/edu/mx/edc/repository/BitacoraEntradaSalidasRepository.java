@@ -1,13 +1,12 @@
 package uttt.edu.mx.edc.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
-import uttt.edu.mx.edc.model.Producto;
+import uttt.edu.mx.edc.model.BitacoraEntradaSalida;
+
 
 @Repository
-public interface ProductoRepository extends JpaRepository<Producto, Long> {
+public interface BitacoraEntradaSalidasRepository extends JpaRepository<BitacoraEntradaSalida, Long>{
 
-   
 }
