@@ -41,5 +41,10 @@ public class PedidosController {
 		pedidoRepository.save(registerPedido);
 		return "redirect:listarPedidos";
 	}
+	@RequestMapping(value = "/redirectPedido", method = RequestMethod.POST)
+	public String redirectPedido() 
+	{
+		return "redirect:registrarPedido";
+	}
 		
 }

@@ -73,6 +73,13 @@ public class DetallePedidoController {
 	public String guardarDetalle(@Valid @ModelAttribute("detallePedido") DetallePedido registerDetalle, BindingResult result, Model model,
 			RedirectAttributes redirectAttrs) 
 	{
+		if(result.hasErrors()) {
+			model.addAttribute("pedidos", pedidoRepository.findAll());
+			redirectAttrs
+            .addFlashAttribute("mensaje", "Debes ingresar todos los datos de la compra")
+            .addFlashAttribute("clase", "danger");
+			return "listarPedidos";
+		}
 		//Obtenemos Fecha y Hora
 		Date date = new Date();
 		//Buscamos el Producto

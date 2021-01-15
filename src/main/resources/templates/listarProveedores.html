@@ -9,46 +9,57 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-dark bg-danger">
-  <a class="navbar-brand" href="/">Tienda</a>
- 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Sistema de Ventas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
         <a class="nav-link" href="/listarPedidos">Pedidos</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/listarBitacora">Bitacora de Entradas y Salidas</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/listarProveedores">Proveedores</a>
       </li>
-    </ul>
-  </div>
-</nav>
+      </ul>
+      
+    </div>
+  </nav>
 <br>
-<h3 class="text-center">Listado de Proveedores</h3>
-<a th:href="@{/registrarProveedor}">Agregar Nuevo Proveedor</a>
+<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+     th:text="${mensaje}"
+     class="alert">
+</div>
+<h3 class="text-center" style="font-family: cursive">Listado de Proveedores</h3>
+<form th:action="@{/redirectProveedor}" method="post">
+<input type="submit" value="Agregar Proveedor" class="btn btn-success btn-sm" /> </form>
+<br>
 <table class="table">
-  <thead class="thead">
-    <tr class="table-danger">
+  <thead class="thead-dark">
+    <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre del Proveedor</th>
       <th scope="col">Direccion</th>
       <th scope="col">Telefono</th>
       <th scope="col">Celular</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <tbody>
-			<tr th:each="proveedor: ${proveedores}">
+    <tbody style="background-color: #FEB706">
+			<tr th:each="proveedor: ${proveedores}" style = "font-family:Comic Sans">
 					<td th:text="${proveedor.id}"></td>
 					<td th:text="${proveedor.strNombreProveedor}"></td>
 					<td th:text="${proveedor.strDireccion}"></td>
 					<td th:text="${proveedor.strTelefono}"></td>
 					<td th:text="${proveedor.strCelular}"></td>
+					<td><a th:href="@{/editarProveedor/} + ${proveedor.id}"
+						th:text="'Editar'" class="btn btn-success btn-xs"></a></td>
 				</tr>	
 	</tbody>
 </table>

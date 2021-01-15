@@ -27,12 +27,12 @@ public class Proveedor {
 	private String strDireccion;
 	
 	@NotBlank(message = "El campo no debe estar Vacio")
-	@Pattern(regexp="(^$|[0-9]{7})")
+	@Pattern(regexp="(^$|[0-9]{7})", message="Debe ser numero de Telefono fijo")
 	@Column(name="strTelefono")
 	private String strTelefono;
 	
 	@NotBlank(message = "El campo no debe estar Vacio")
-	@Pattern(regexp="(^$|[0-9]{10})")
+	@Pattern(regexp="(^$|[0-9]{10})", message="Debe ser numero de Celular")
 	@Column(name="strCelular")
 	private String strCelular;
 
