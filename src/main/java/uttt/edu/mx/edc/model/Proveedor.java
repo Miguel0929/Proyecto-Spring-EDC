@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="proveedores")
@@ -16,18 +18,21 @@ public class Proveedor {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "El campo no debe estar Vacio")
 	@Column(name="strNombreProveedor")
 	private String strNombreProveedor;
 	
-	
+	@NotBlank(message = "El campo no debe estar Vacio")
 	@Column(name="strDireccion")
 	private String strDireccion;
 	
-	
+	@NotBlank(message = "El campo no debe estar Vacio")
+	@Pattern(regexp="(^$|[0-9]{7})")
 	@Column(name="strTelefono")
 	private String strTelefono;
 	
-	
+	@NotBlank(message = "El campo no debe estar Vacio")
+	@Pattern(regexp="(^$|[0-9]{10})")
 	@Column(name="strCelular")
 	private String strCelular;
 

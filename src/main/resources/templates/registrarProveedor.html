@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registrar Proveedor</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-danger">
+  <a class="navbar-brand" href="/">-Regresar</a>
+ 	
+</nav>
+<br>
+<div class="card">
+  <div class="card-header text-white bg-danger mb-3">
+    Agregar Proveedor
+  </div>
+		<div class="card-body">
+			 <form th:action="@{/registrarProveedor}" th:object="${proveedor}" method="post">
+			 <div class="row">
+				<div class="col-md-6">
+					<label for="strNombreProveedor">Nombre del Proveedor</label>
+					<div>
+						<input type="text" th:field="*{strNombreProveedor}"
+							class="form-control"
+							th:errorclass="'form-control alert-danger'"
+							placeholder="Ejemplo: Marinela" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('strNombreProveedor')}"
+							th:errors="*{strNombreProveedor}"></small>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<label for="strDireccion" >Direccion</label>
+					<div>
+						<input type="text" th:field="*{strDireccion}"
+							class="form-control form-control"
+							th:errorclass="'form-control alert-danger'"
+							placeholder="Ejemplo: Avenida 16 de septiembre"  /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('strDireccion')}"
+							th:errors="*{strDireccion}"></small>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="strTelefono">Telefono</label>
+					<div>
+						<input type="number" th:field="*{strTelefono}"
+							class="form-control form-control"
+							th:errorclass="'form-control alert-danger'"
+							placeholder="Ejemplo: 7371276"  /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('strTelefono')}"
+							th:errors="*{strTelefono}"></small>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<label for="strCelular">Celular</label>
+					<div>
+						<input type="text" th:field="*{strCelular}"
+							class="form-control form-control"
+							th:errorclass="'form-control alert-danger'"
+							placeholder="Ejemplo: 7737265172"  /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('strCelular')}"
+							th:errors="*{strCelular}"></small>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div >
+                             <input type="submit"
+							value="Aceptar" class="btn btn-outline-danger btn-sm" />
+                            </div>
+			 </form>
+		</div>
+	</div>
+</body>
+</html>
